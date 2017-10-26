@@ -1,0 +1,25 @@
+# Object files
+*.log
+~*.docx
+*.png
+*.bat
+
+# Build results
+newpage/
+tmp/
+topoimages/
+XJReport/
+visio/
+.idea/
+alex/
+caches/
+.svn/
+/module/admin/Runtime/
+/module/admin/Common/
+/module/member/Runtime/
+/module/cli/Runtime/
+/api/Runtime/
+/api/Admin/
+/ueditor/
+module/home/home_old.html
+a.html
