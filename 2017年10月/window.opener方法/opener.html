@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form name="form1">
+    <input type="text" name="inpu" />
+    <input type="button" onclick="javascript:window.open('back2opener.html?toname=opener.form1.inpu');" />
+</form>
+</body>
+<script type="text/javascript">
+    //在JS中，window.opener只是对弹出窗口的母窗口的一个引用。比如：
+    //    a.html中，通过点击按钮等方式window.open出一个新的窗口b.html。那么在b.html中，就可以通过window.opener（省略写为opener）来引用a.html，包括a.html的document等对象，操作a.html的内容。
+    //    假如这个引用失败，那么将返回null。所以在调用opener的对象前，要先判断对象是否为null，否则会出现“对象为空或者不存在”的JS错误。
+
+</script>
+</html>
