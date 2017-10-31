@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    //计算对象的长度，既获得对象属性的个数
+    //方法一：通过for in遍历对象，并通过hasOwnProperty判断是否是对象自身可枚举的属性
+    var obj = {"name": 'yzs',"age": '18'};
+    var length = countProperties(obj);
+    console.log(length);
+    function countProperties(obj) {
+        var count = 0;
+        for(var property in obj) {
+            if(Object.prototype.hasOwnProperty.call(obj,property)) {
+                count++;
+            }
+        }
+        return count;
+    }
+    //方法二：通过Object.keys()获取对象可枚举属性所组成的数组，并通过length获取对象长度
+    var obj1 = {"name": 'yzs',"age": '18',"sex": 'male'};
+    var arr = Object.keys(obj1);
+    var len = arr.length;
+    console.log(len);
+</script>
+</body>
+</html>
