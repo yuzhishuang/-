@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>positon属性</title>
+</head>
+<style type="text/css">
+    html,body,div{
+                    margin:0;   
+                    padding:0;  
+                    list-style:none;
+    }
+    .center{
+                margin:30px;
+                border:#999999 solid 10px;
+                width:400px;
+                height:300px;
+    }
+    .div1{
+            width:200px;
+            height:200px;
+            background:#0099FF;
+            /*设定TRBL,当设定TRBL值后则根据浏览器的左上角作为原始点*/
+           /* position:absolute;
+            left:0px;
+            top:0px;*/
+            /*不设定TRBL,absolute在没有设定TRBL值时是根据父级对象的坐标作为始点的*/
+            position: absolute;
+    }
+    .div2{
+            width:400px;
+            height:300px;
+            font-size:30px;
+            font-weight:bold;
+            color:#fff;
+            background:#FF0000;
+    }
+    .rel {
+      background: #ddd;
+    }
+    .div3{
+            width:200px;
+            height:150px;
+            background:#0099FF;
+            position:relative;
+            top:-20px;
+            left:0px;
+    }
+    .div4{
+            width:400px;
+            height:150px;
+            font-size:30px;
+            font-weight:bold;
+            color:#fff;
+            background:#FF0000;
+    }
+</style>
+<body>
+ <!--  absolute是生成觉对定位的元素，脱离了文本流（即在文档中已经不占据位置），参照浏览器的左上角通过top,right,bottom,left（简称TRBL） 定位。可以选取具有定位的父级对象（下文将说到relative与absolute的结合使用）或者body坐标原点进行定位，也可以通过z-index进行层次分级。absolute在没有设定TRBL值时是根据父级对象的坐标作为始点的，当设定TRBL值后则根据浏览器的左上角作为原始点。具体案例如下： -->
+  <div class="center">
+          <div class="div1"></div>
+          <div class="div2">position:absolute定位测试</div>
+  </div>
+
+ <!--  relative是相对的意思，顾名思义就是相对于元素本身在文档中应该出现的位置来移动这个元素，可以通过TRBL来移动元素的位置，实际上该元素依然占据文档中原有的位置，只是视觉上相对原来的位置有移动。具体案例如下： -->
+ <div class="rel">
+  <div class="div3"></div>
+  <div class="div4">position:relative定位测试</div>
+ </div>
+
+<!--  absolute 
+生成绝对定位的元素，相对于 static 定位以外的第一个父元素进行定位。 
+元素的位置通过 “left”, “top”, “right” 以及 “bottom” 属性进行规定。 
+fixed 
+生成绝对定位的元素，相对于浏览器窗口进行定位。 
+元素的位置通过 “left”, “top”, “right” 以及 “bottom” 属性进行规定。 
+relative 
+生成相对定位的元素，相对于其正常位置进行定位。 
+因此，”left:20” 会向元素的 LEFT 位置添加 20 像素。 
+static 
+默认值。没有定位，元素出现在正常的流中（忽略 top, bottom, left, right 或者 z-index 声明）。 
+inherit 
+规定应该从父元素继承 position 属性的值。 -->
+
+</body>
+</html>
