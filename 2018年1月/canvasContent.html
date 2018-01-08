@@ -10,6 +10,75 @@
 	</style>
 </head>
 <body>
-	<canvas id="demo" width="200" height="200"></canvas>
+	<canvas id="demo" width="1000" height="1000"></canvas>
 </body>
+<script type="text/javascript">
+	var drawing = document.getElementById("demo");
+	//  确定浏览器支持canvas元素
+	if (drawing.getContext) {
+		var context = drawing.getContext("2d");
+		//  更多代码
+	}
+	//  使用toDataURL()方法，可以导出在<canvas>元素上绘制的图像，要取得画布中的一副PNG格式的图像
+	if (drawing.getContext) {
+		//  取得图像的数据URI
+		var imgURI = drawing.toDataURL('image/png');
+		//  显示图像
+		var image = document.createElement('img');
+		image.src = imgURI;
+		document.body.appendChild(image);
+	}
+	//  矩形是唯一一种可以直接在2D上下文中绘制的形状。与矩形有关的方法包括fillRect()、strokeRect()和clearRect()
+	//  绘制矩形
+	if (drawing.getContext) {
+		var context = drawing.getContext('2d');
+		//  绘制红色矩形
+		context.fillStyle = '#f00';
+		context.fillRect(10, 10, 50, 50);
+		//  绘制半透明的蓝色矩形
+		context.fillStyle = 'rgba(0, 0, 255, 0.5)';
+		context.fillRect(30, 30, 50, 50);
+	}
+	//  strokeRect()方法在画布上绘制的矩形会使用指定的颜色描边，描边颜色通过strokeStyle属性指定
+	if (drawing.getContext) {
+		var context = drawing.getContext('2d');
+		//  绘制红色的描边矩形
+		context.strokeStyle = '#f00';
+		context.strokeRect(40, 40, 50, 50);
+		//  绘制半透明的蓝色描边矩形
+		context.strokeStyle = 'rgba(0, 0, 255, 0.5)';
+		context.strokeRect(50, 50, 50, 50);
+	}
+	//  绘制一个不带数字的时钟表盘
+	if (drawing.getContext) {
+		var context = drawing.getContext('2d');
+		context.fillStyle = '#ff0';
+		context.strokeStyle = '#000';
+		//  开始路径
+		context.beginPath();
+		//  绘制外圆
+		context.arc(300, 300, 99, 0, 2*Math.PI, false);
+		//  绘制内圆
+		context.moveTo(394, 300);
+		context.arc(300, 300, 94, 0, 2*Math.PI, false);
+		//  绘制分针
+		context.moveTo(300, 300);
+		context.lineTo(300, 220);
+		//  绘制时针
+		context.moveTo(300, 300);
+		context.lineTo(245, 300);
+		//  描边路径
+		context.stroke();
+		//  由于路径的使用很频繁，所以就有了一个名为isPointInPath()的方法。这个方法接收x和y坐标作为参数，用于在路径被关闭之前确定画布上的某一点是否位于路径上。
+		if (context.isPointInPath(300, 300)) {
+			console.log('此点位于圆的路径上');
+		}
+		//  绘制文本主要有两个方法：fillText()和strokeText()。这两个方法都可以接收4个参数：要绘制的文本字符串、x坐标、y坐标和可选的最大像素宽度
+		//  绘制表上的数字
+		context.font = 'bold 14px Arial';
+		context.textAlign = 'center';
+		context.textBaseline = 'middle';
+		context.fillText('12', 300, 215);
+	}
+</script>
 </html>
