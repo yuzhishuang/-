@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>cookie、session</title>
+</head>
+<body>
+<button onclick="deleteCookie()">取消</button>
+</body>
+<script type="text/javascript">
+		//  创建和存储cookie
+		//  创建一个可在cookie变量中存储访问者姓名的函数
+		//  函数解析：
+		//  以上的函数参数中，cookie 的名称为 cname，cookie 的值为 cvalue，并设置了 cookie 的过期时间 expires。
+		//  该函数设置了 cookie 名、cookie 值、cookie过期时间。
+		function setCookie ( cname, cvalue, exdays ) {
+			var d = new Date();
+			d.setTime(d.getTime() + (exdays*24*60*60*1000));
+			var expires = "expires=" + d.toGMTString();
+			document.cookie = cname + '=' + cvalue + ';' + expires;
+		}
+
+		//  获取cookie值得函数
+		function getCookie (cname) {
+			var name = cname + "=";
+			var ca = document.cookie.split(";");
+			for (var i = 0; i < ca.length;i++) {
+				var c = ca[i].trim();
+				if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+			}
+			return "";
+		}
+		function checkCookie(){
+		    var user=getCookie("username");
+		    if (user!=""){
+		        alert("欢迎 " + user + " 再次访问");
+		    }
+		    else {
+		        user = prompt("请输入你的名字:","");
+		          if (user!="" && user!=null){
+		            setCookie("username",user,30);
+		        }
+		    }
+		}
+
+		function deleteCookie () {
+			cookie.deleteCookie('position');
+			console.log(cookie.getCookie('position'));	
+		}
+
+
+		//  封装一个cookie类
+		var cookie = {
+			setCookie: function( cname, cvalue, exdays ) {
+				var d = new Date();
+				d.setTime(d.getTime() + (exdays*24*60*60*1000));
+				var expires = 'expires=' + d.toGMTString();
+				document.cookie = cname + '=' + cvalue + ';' + expires;
+			},
+			getCookie: function (cname) {
+				var i,
+					name = cname + '=';
+					cookies = (document.cookie).split(';');
+				for ( i = 0; i < cookies.length; i++) {
+					var options = cookies[i].trim();
+					if (options.indexOf(cname) !== -1) {
+						return options.substring(name.length, options.length);	
+					}
+				}
+				return "";
+			},
+			deleteCookie: function (cname) {
+				var d = new Date();
+				d.setTime(d.getTime() - 1000);
+				var expires = 'expires=' + d.toGMTString();
+				document.cookie = cname + '=v' + ';' + expires;
+			}
+		};
+		console.log('测试类');
+		cookie.setCookie( 'position', '前端开发', 1 );
+		console.log(cookie.getCookie('position'));
+</script>
+</html>

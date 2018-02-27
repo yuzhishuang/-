@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>给数组打乱顺序</title>
+</head>
+<body>
+</body>
+<script type="text/javascript">
+	(function () {
+		//  第一种方法  不是等可能随机
+		var arr = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ];
+		arr.sort( function () { return 0.5 - Math.random() });
+		console.log(arr);
+		//  第二种方法   JavaScript 中实现 PHP 中的 Shuffle 函数的功能
+		function shuffle(items) {
+		    var i, j, k, l = items.length;
+		    for (i = l - 1; i > 0; i --) {
+		        j = Math.floor(Math.random() * (i + 1));
+		        k = items[i];
+		        items[i] = items[j];
+		        items[j] = k;
+		    }
+		    return items;
+		}
+		console.log(shuffle( arr ));
+	})()
+</script>
+</html>
