@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+
+	function deleteChildNode ( obj, id ) {
+		if (obj.child.id === id) {
+			delete obj.child;
+		} else {
+			deleteNode( obj.child, id);
+		}
+	}
+	function deleteNode ( obj, id ) {
+		if (obj.id === id) {
+			return obj = '';
+		} else {
+			deleteChildNode( obj, id );
+		}
+	}
+	var obj = {
+		id: 1,
+		child: {
+			id: 2,
+			child: {
+				id: 3
+			}
+		}
+	};
+	//console.log(obj);
+	deleteNode( obj, 3);
+	console.log(obj);
+</script>
+</body>
+</html>

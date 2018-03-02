@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<button id="add-event-more">叠加绑定SayHello事件</button>
+	<button id="add-event-one">先移除再绑定SayHello事件</button>
+	<button id="say-hello">Say Hello</button>
+<script type="text/javascript" src="jquery-2.1.4.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function () {
+		var iCount = 0;
+		function sayHello() {
+			alert("Hello!");
+		}
+		//  每Click1次，多响应事件一次（叠加了）
+		$('#add-event-more').on('click', function () {
+			iCount = iCount + 1;
+			$("#say-hello").html("Say Hello" + iCount + "次");
+			$("#say-hello").on("click", sayHello);  //  绑定事件（事件叠加了）
+		});
+		//  永远只响应1次事件
+		$('#add-event-one').on("click", function () {
+			$('#say-hello').html("Say Hello 1次");
+			$("#say-hello").off('click').on('click', sayHello);  //  先移除事件（避免事件叠加），在绑定事件
+		})
+	})
+</script>
+</body>
+</html>

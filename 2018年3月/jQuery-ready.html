@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>jQuery中</title>
+</head>
+<body>
+<script type="text/javascript" src="jquery-2.1.4.min.js"></script>
+<script type="text/javascript">
+	//  当DOM（文档对象模型），已经加载，并且页面（包括图像）已经完全呈现时，会发生ready事件
+	$(document).ready(function () {
+		alert(1);
+	});
+	$(document).ready(function () {
+		alert(1);
+	}, false);
+</script>
+</body>
+</html>
