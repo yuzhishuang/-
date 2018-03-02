@@ -5,7 +5,8 @@
 </head>
 <body>
 <script type="text/javascript">
-	function XAjaxRequester() {
+	function XAjaxRequester(bool) {
+		this.openTempData = ( typeof bool === "boolean") ? bool : true;  //  是否采用缓存
 		this.tempSaveData = {};  //为了加入缓存
 		this.XHR = this.creareXMLHttpRequest();
 	}
@@ -76,7 +77,7 @@
 					}
 				}
 			};
-			if (this.tempSaveData[url]) {
+			if (this.openTempData && this.tempSaveData[url]) {
 				data = this.tempSaveData[url];
 				successCallBack(data);
 			} else {
