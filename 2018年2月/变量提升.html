@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>变量提升</title>
+</head>
+<body>
+</body>
+<script type="text/javascript">
+	(function () {
+		console.log(global);  //  undefined
+		var global = 'global';
+		function fn () {
+			console.log(global);  //  undefined
+			var global = 'fnGlobal';
+			console.log(global);  //  fnGlobal
+		}
+		fn();
+	})()
+</script>
+</html>

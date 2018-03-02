@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+	<div id="div1"></div>
+<script type="text/javascript">
+(function(){
+	function Person (name) {
+		this.name = name;
+		return {name: "jerry"}
+	}
+	var person = new Person('yzs');
+	console.log(person.name);
+	console.log(Person());
+
+	function Person1 (name) {
+		this.name = name;
+		return 1;
+	}
+	var person = new Person1('yzs');
+	console.log(person.name);
+	console.log(Person1());
+})();
+
+</script>
+</body>
+</html>

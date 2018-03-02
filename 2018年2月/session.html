@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>cookie、session</title>
+</head>
+<body>
+	<input type="text" name="local" />
+<button onclick="setLocalStorage()">访问localStorage</button>
+<button onclick="setSessionStorage()">访问setSessionStorage</button>
+</body>
+<script type="text/javascript">
+	alert(window.localStorage.getItem('name')
+	//  设置localStorage
+	function setLocalStorage () {
+		window.localStorage.setItem('name', 'yzs');
+	}
+
+	alert(window.sessionStorage.getItem('name'));
+	//  设置localStorage
+	function setLocalStorage () {
+		window.sessionStorage.setItem('name', 'yzs');
+	}
+
+</script>
+</html>
