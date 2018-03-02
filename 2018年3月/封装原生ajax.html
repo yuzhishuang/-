@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>封装原生的ajax</title>
+</head>
+<body>
+<script type="text/javascript">
+	function XAjaxRequester(bool) {
+		this.openTempData = ( typeof bool === "boolean") ? bool : true;  //  是否采用缓存
+		this.tempSaveData = {};  //为了加入缓存
+		this.XHR = this.creareXMLHttpRequest();
+	}
+	XAjaxRequester.prototype = {
+		creareXMLHttpRequest: function () {
+			var request = false;
+				return function () {
+					if (!request) {
+						//  一般先判断非IE浏览器
+						//  window对象中有XMLHttpRequest存在就是非IE，包括（IE7，IE8）
+						if (window.XMLHttpRequest) {
+							request = new XMLHttpRequest();  //  非IE以及IE7，IE8以上浏览器
+							if (request.overrideMimeType) {
+								request.overrideMimeType("type/xml");  //  重置mime类型
+								//  window对象中有ActiveXobject属性存在就是IE浏览器的低版本
+							} else if (window.ActiveXobject) {
+								var versions = ['Microsoft.XMLHTTP',
+			                       'MSXML.XMLHTTP',
+			                       'Msxml2.XMLHTTP.7.0',
+			                       'Msxml2.XMLHTTP.6.0',
+			                       'Msxml2.XMLHTTP.5.0', 
+			                       'Msxml2.XMLHTTP.4.0', 
+			                       'MSXML2.XMLHTTP.3.0', 
+			                       'MSXML2.XMLHTTP'];//各种IE浏览器创建Ajax对象时传递的参数
+			                    for(var i=0; i<versions.length; i++){
+				                    try{
+				                         request=new ActiveXObject(versions[i]);//各个IE浏览器版本的参数不同
+				                    }catch(e){
+				                         request=false;
+				                    }
+			                	}
+			         		}
+						}
+					}
+					return request;
+					
+				}
+		}(),
+		get: function (url, data, successCallBack, failureCallBack) {  //  包含参数的url
+			var _self = this;
+			//  请求数据，至少请求三次
+			if (typeof data == "object") {
+				url = this.encodeGetData(url, data);
+			} else {
+				console.error('传入参数格式错误！需要传入对象参数！');
+				return;
+			}
+			var sendCount = 0;
+			var xhr = this.XHR;
+			xhr.onreadystatechange = function () {
+				if (this.readyState == 4) {
+					if ((this.status >= 200 && this.status < 300) || this.status == 304) {
+						//  var res = JSON.parse(this.responseText);
+                    	var res = this.responseText;
+                    	if (typeof successCallBack == "function") {
+                    		successCallBack(res);
+                    		_self.tempSaveData[url] = res;  //  加入缓存
+                    	}
+					} else {
+						if (++sendCount < 3) {  //  额外请求2次作为请求的补充
+							xhr.open("get", url, true);
+							xhr.send(null);
+						} else {
+							if (typeof failureCallBack == "function") {
+								failureCallBack();
+							}
+						}
+					}
+				}
+			};
+			if (this.openTempData && this.tempSaveData[url]) {
+				data = this.tempSaveData[url];
+				successCallBack(data);
+			} else {
+				xhr.open("get", url, true);
+				xhr.send(null);
+			}
+		},
+		post: function (url, data, successCallBack, failureCallBack) {
+			var xhr = this.XHR;
+			xhr.onreadystatechange = function () {
+				if (this.readyState == 4) {
+					if ((this.status >= 200 && this.status < 300 || this.status == 304)){
+						if (typeof successCallBack == "function") {
+							successCallBack(this.responseText);
+						}
+					} else {
+						if (typeof failureCallBack == "function") {
+							failureCallBack();
+						}
+					}
+				}
+			};
+			data = this.encodePostData()
+			xhr.open("post", url, true);
+			xhr.setRequestHeader("Content-Type", "mutipart/form-data");
+			xhr.send(data);
+		},
+		//  ajax中get请求参数encode处理
+		encodeGetData: function (urlStr, dataObject) {
+			for (var prop in dataObject) {
+				var encodeProp = encodeURIComponent(prop);
+				var encodeValue = encodeURIComponent(dataObject[prop]);
+				urlStr += (urlStr.indexOf("?") == -1 ? "?" : "&");
+				var dataStr = encodeProp + '=' + encodeValue;
+				urlStr += dataStr;
+			}
+			return urlStr;
+		},
+		//  ajax post请求参数处理
+		encodePostData: function (dataObj) {
+			var urlStr = '';
+			for (var prop in dataObj) {
+				var property = encodeURIComponent(prop);
+				var value = encodeURIComponent(dataObj[prop]);
+				urlStr += property + "=" + value + "&"
+			}
+			urlStr = urlStr.slice(0, urlStr.length - 1);
+			return urlStr;
+		}
+	};
+	//  创建浏览器的ajax请求对象(如果不需支持IE低版本，可去掉)
+	// function creareXMLHttpRequest () {
+	// 		var request = false;
+	// 		//  一般先判断非IE浏览器
+	// 		//  window对象中有XMLHttpRequest存在就是非IE，包括（IE7，IE8）
+	// 		if (window.XMLHttpRequest) {
+	// 			request = new XMLHttpRequest();  //  非IE以及IE7，IE8以上浏览器
+	// 			if (request.overrideMimeType) {
+	// 				request.overrideMimeType("type/xml");  //  重置mime类型
+	// 				//  window对象中有ActiveXobject属性存在就是IE浏览器的低版本
+	// 			} else if (window.ActiveXobject) {
+	// 				var versions = ['Microsoft.XMLHTTP',
+ //                       'MSXML.XMLHTTP',
+ //                       'Msxml2.XMLHTTP.7.0',
+ //                       'Msxml2.XMLHTTP.6.0',
+ //                       'Msxml2.XMLHTTP.5.0', 
+ //                       'Msxml2.XMLHTTP.4.0', 
+ //                       'MSXML2.XMLHTTP.3.0', 
+ //                       'MSXML2.XMLHTTP'];//各种IE浏览器创建Ajax对象时传递的参数
+ //                    for(var i=0; i<versions.length; i++){
+	//                     try{
+	//                          request=new ActiveXObject(versions[i]);//各个IE浏览器版本的参数不同
+	//                        if(request){
+	//                              return request;
+	//                          }
+	//                     }catch(e){
+	//                          request=false;
+	//                     }
+ //                	}
+ //         		}
+ //         		return request;
+	// 		}
+	// }
+	//  请求用法
+	var a = new XAjaxRequester();
+	a.get('/url', {name: 'yzs', age: 12}, function (res) {
+		//成功回调
+	}, function (res) {
+		//  失败回调
+	});
+</script>
+</body>
+</html>

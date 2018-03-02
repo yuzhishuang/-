@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>清除浮动</title>
+</head>
+<style type="text/css">
+	.box {
+		width: 300px;
+		height: auto;
+		background-color: #000;
+		margin: 100px auto;
+		padding: 5px;
+	}
+	.box h2 {
+		width: 300px;
+		line-height: 24px;
+		color: #ccc;
+	}
+	.xx {
+		width: 140px;
+		float: left;
+		height: 24px;
+		overflow: hidden;
+		padding: 0px 5px;
+		line-height: 24px;
+		color: #ff9933;
+	}
+	.za {
+		overflow: auto;
+		zoom: 1;
+	}
+</style>
+<body>
+<div class="box">
+	<h2>这个没加overflow：auto和zoom：1属性，没有清除浮动，底下的li产生溢出重叠现象</h2>
+	<div class="xx">子float</div>
+	<div class="xx">子float</div>
+	<div class="xx">子float</div>
+	<div class="xx">子float</div>
+	<div class="xx">子float</div>
+	<div class="xx">子float</div>
+	<div class="xx">子float</div>
+	<div class="xx">子float</div>
+</div>
+<div class="box za">
+	<h2>这个加overflo:auto和zoom：1属性，清除浮动，正常</h2>
+	<div class="xx">子float</div>
+	<div class="xx">子float</div>
+	<div class="xx">子float</div>
+	<div class="xx">子float</div>
+	<div class="xx">子float</div>
+	<div class="xx">子float</div>
+	<div class="xx">子float</div>
+	<div class="xx">子float</div>
+</div>
+</body>
+</html>
