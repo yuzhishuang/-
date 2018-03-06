@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>js正确删除数组中的某项值</title>
+</head>
+<body>
+<script type="text/javascript">
+	//  正确删除数组中的某个值，关键在于数组发生变化后要记得修改指针，避免漏删
+	/*
+	* value：数组
+	*/
+	Array.prototype.remove = function ( value ) {
+		var index = this.indexOf(value);  //  Internet Explorer 8 及 更早IE版本不支持该方法
+		this.splice(index, 1);
+	}
+	//  例子
+	var arr = [ 2, 3, 4, 5, 6, 7, 8, 8, 8, 9, 4 ];
+	//  删除数组中2的倍数
+	for (var i = 0; i < arr.length; i++) {
+		if ( arr[i] % 2 === 0 ) {
+			arr.remove(arr[i]);
+			i--;
+		}
+	}
+	console.log(arr);
+</script>
+</body>
+</html>
