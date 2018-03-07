@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>jQuery中</title>
-</head>
-<body>
-<script type="text/javascript" src="jquery-2.1.4.min.js"></script>
-<script type="text/javascript">
-	/**
+/**
  *  移动端事件 tab longTab swipeLeft swipeRight swipeTop swipeDown
  *   //以下使用示例
  *   function swipeLeft() {
@@ -67,7 +59,14 @@ var MobileEvent = (function () {
             var hDis = Math.abs(touchEndX - touchStartX);
             var vDis = Math.abs(touchEndY - touchStartY);
             if (hDis - vDis > 0) {
-                e.preventDefault();
+                // e.preventDefault();
+                // 判断默认行为是否可以被禁用
+                if (event.cancelable) {
+                    // 判断默认行为是否已经被禁用
+                    if (!event.defaultPrevented) {
+                        event.preventDefault();
+                    }
+                }
                 // console.log("preventDefault");
             }
         }
@@ -163,7 +162,7 @@ var MobileEvent = (function () {
     }
 
     EventFire.prototype = {
-        constructor: EventTarget,  //   EventTarget 是一个由可以接收事件的对象实现的接口，并且可以为它们创建侦听器。
+        //constructor: EventTarget,  //   EventTarget 是一个由可以接收事件的对象实现的接口，并且可以为它们创建侦听器。
         /**
          * @selector 支持querySelector选择符
          * @eventType   移动端事件之一 tab longTab swipeLeft swipeRight swipeTop swipeDown
@@ -243,6 +242,3 @@ var MobileEvent = (function () {
     return EventHouse = new EventFire();
     // console.log(typeof new EventTarget());
 }());
-</script>
-</body>
-</html>

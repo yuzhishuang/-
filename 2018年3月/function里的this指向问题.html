@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript" src="jquery-2.1.4.min.js"></script>
+<script type="text/javascript">
+	var name = 'yzs外层';
+	var obj = {
+		name: 'yzsObj内',
+		showName: function () {
+			// var name = '123';
+			// var demo = {
+			// 	name: 'yzsaaaaaa',
+			// 	alertName: function () {
+			// 		alert(this.name);
+			// 	}
+			// };
+			// demo.alertName();
+			var aa = function () {
+				var name = '456';
+				console.log(this);
+				alert(this.name);
+			}
+			window.aa();
+		}
+	};
+	obj.showName();
+	// var test = obj.showName;
+	// test();
+	// function demo () {
+	// 	var obj1 = {
+	// 		name: 'yzs函数'
+	// 	};
+	// 	obj1.name2 = this.name;
+	// 	alert(obj1.name2);
+	// }
+	// demo();
+	// function demo1 () {
+	// 	var name = 'yzsDemo1';
+	// 	return function () {
+	// 		var name = 'yzsDemo2';
+	// 		alert('demo2' + this.name);
+	// 	}
+	// };
+	// demo1()();
+	// function demo1 () {
+	// 	var name = 'yzsDemo1';
+	// 	function demo2 () {
+	// 		var name = 'yzsDemo2';
+	// 		alert('demo2' + this.name);
+	// 	}
+	// 	demo2();
+	// };
+	// demo1();
+</script>
+</body>
+</html>

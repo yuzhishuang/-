@@ -2,13 +2,16 @@
 <html>
 <head>
 	<title></title>
+	<meta charset="utf-8" />
 </head>
 <body>
 	<button class="demo">手机端点击事件</button>
+	<div id="div3" style="width: 200px;height: 100px;background-color: #f00;"></div>
+<script src="jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="MobileEvent.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
 	function swipeLeft() {
-    	$("#div3").animate({left: "-=200px"}, 2000);
+    	alert(1);
    	}
     MobileEvent.addHandler(".demo", "tab", swipeLeft);//加入名值对
 </script>
