@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+	<div class="images-turn-container">
+        <div id="flow-img-cont" class="images-slide-cont">
+        <?php 
+            $i=0;
+        ?>
+        @foreach($usedImages as $imageItem)
+            <a href="{{$imageItem["link_to"]}}">
+                @if($i===0)
+                    <p class="banner-country-italy banner-country-container">
+                        <span class='country-it banner-country'>ITALY</span><br>
+                        <span class='it-date banner-date'></span>
+                    </p>
+                    <p class="banner-country-china banner-country-container">
+                        <span class='country-ch banner-country'>CHINA</span><br>
+                        <span class='ch-date banner-date'></span>
+                    </p>
+                @endif
+                <img src="{{$imageItem["mobile_path"]}}" title="{{$imageItem["title"]}}" alt="{{$imageItem["comment"]}}" >
+            </a>
+            <?php $i++ ?>
+        @endforeach
+        </div>
+        <div id="red-dot-container" class="dot-container"></div>
+    </div>
+<script src="../MobileEventYzs.js" type="text/javascript" charset="utf-8"></script>	
+<script src="slide-img.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	(function () {
+		var flow = new ImgFlow();
+        flow.init({
+           flowCount: used_Images.length,//轮播图片的数量
+           animateTime: 500, //动画时间
+           slideContainerId: "flow-img-cont",//滑动容器id
+           slideBlockSelector: "img", //滑动显示的单个模块的选择符
+           animateTimeGap: 3000,
+           auto: true,
+           tipContainerId: "red-dot-container",//焦点显示容器
+           tipClass: "dot",//默认焦点样式class
+           tipHighLightClass: "dot-focus"//获取焦点的焦点class
+        });
+
+        // 移动端事件 tab longTab swipeLeft swipeRight swipeTop swipeDown
+        MobileEvent.addHandler(".images-slide-cont img", "swipeLeft", function () {
+            flow.slideAnimateLeft();
+        });
+        MobileEvent.addHandler(".images-slide-cont img", "swipeRight", function () {
+            flow.slideAnimateRight();
+        });
+	})()
+</script>
+</body>
+</html>

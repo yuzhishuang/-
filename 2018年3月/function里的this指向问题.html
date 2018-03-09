@@ -8,7 +8,7 @@
 <script type="text/javascript">
 	var name = 'yzs外层';
 	var obj = {
-		name: 'yzsObj内',
+		name: [1, 2, 3],
 		showName: function () {
 			// var name = '123';
 			// var demo = {
@@ -18,15 +18,15 @@
 			// 	}
 			// };
 			// demo.alertName();
-			var aa = function () {
-				var name = '456';
-				console.log(this);
-				alert(this.name);
-			}
-			window.aa();
 		}
 	};
-	obj.showName();
+	//obj.showName();
+	var obj1 = {};
+	Object.assign(obj1, obj);
+	console.log(obj1.name);
+	obj.name.push(4);
+	console.log(obj1.name);
+	console.log(obj.name);
 	// var test = obj.showName;
 	// test();
 	// function demo () {
