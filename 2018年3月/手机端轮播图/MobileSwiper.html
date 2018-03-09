@@ -7,25 +7,9 @@
 <body>
 	<div class="images-turn-container">
         <div id="flow-img-cont" class="images-slide-cont">
-        <?php 
-            $i=0;
-        ?>
-        @foreach($usedImages as $imageItem)
-            <a href="{{$imageItem["link_to"]}}">
-                @if($i===0)
-                    <p class="banner-country-italy banner-country-container">
-                        <span class='country-it banner-country'>ITALY</span><br>
-                        <span class='it-date banner-date'></span>
-                    </p>
-                    <p class="banner-country-china banner-country-container">
-                        <span class='country-ch banner-country'>CHINA</span><br>
-                        <span class='ch-date banner-date'></span>
-                    </p>
-                @endif
-                <img src="{{$imageItem["mobile_path"]}}" title="{{$imageItem["title"]}}" alt="{{$imageItem["comment"]}}" >
+            <a href="">
+                <img src="">
             </a>
-            <?php $i++ ?>
-        @endforeach
         </div>
         <div id="red-dot-container" class="dot-container"></div>
     </div>
