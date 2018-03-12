@@ -4,6 +4,11 @@
 	<title></title>
 	<meta charset="utf-8" />
 </head>
+<style type="text/css">
+  a {
+    float: left;
+  }
+</style>
 <body>
 	<div class="images-turn-container">
         <div id="flow-img-cont" class="images-slide-cont">
@@ -25,13 +30,14 @@
         </div>
         <div id="red-dot-container" class="dot-container"></div>
     </div>
+<script src="../jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script> 
 <script src="../MobileEventYzs.js" type="text/javascript" charset="utf-8"></script>	
 <script src="slide-img.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
 	(function () {
 		var flow = new ImgFlow();
         flow.init({
-           flowCount: used_Images.length,//轮播图片的数量
+           flowCount: 5,//轮播图片的数量
            animateTime: 500, //动画时间
            slideContainerId: "flow-img-cont",//滑动容器id
            slideBlockSelector: "img", //滑动显示的单个模块的选择符

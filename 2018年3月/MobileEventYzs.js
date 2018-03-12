@@ -59,14 +59,14 @@ var MobileEvent = (function () {
             var hDis = Math.abs(touchEndX - touchStartX);
             var vDis = Math.abs(touchEndY - touchStartY);
             if (hDis - vDis > 0) {
-                // e.preventDefault();
+                e.preventDefault();
                 // 判断默认行为是否可以被禁用
-                if (event.cancelable) {
-                    // 判断默认行为是否已经被禁用
-                    if (!event.defaultPrevented) {
-                        event.preventDefault();
-                    }
-                }
+                //if (e.cancelable) {
+                //    // 判断默认行为是否已经被禁用
+                //    if (!e.defaultPrevented) {
+                //        e.preventDefault();
+                //    }
+                //}
                 // console.log("preventDefault");
             }
         }
