@@ -5,27 +5,59 @@
 	<meta charset="utf-8" />
 </head>
 <style type="text/css">
+    .images-turn-container {
+        position: relative;
+        width: 1000px;
+        height: 600px;
+        margin-bottom: 0.20rem;
+        overflow: hidden;
+    }
+    .images-slide-cont {
+        position: absolute;
+        top:0;
+    }
   a {
     float: left;
   }
+  .dot-container {
+      position: absolute;
+      right:0;
+      bottom:5px;
+      padding:0 0.6rem;
+      z-index: 99;
+  }
+    .dot-container .dot {
+        display: block;
+        width: 1rem;
+        height: 1rem;
+        -moz-border-radius: 0.08rem;
+        -webkit-border-radius: 0.08rem;
+        border-radius: 0.5rem;
+        background: #ccc;
+        float: left;
+        margin-right: 0.20rem;
+    }
+    .dot-container .dot-focus {
+        background: #f00;
+    }
 </style>
 <body>
 	<div class="images-turn-container">
         <div id="flow-img-cont" class="images-slide-cont">
             <a href="javascript:">
-                <img src="imgs/img1.jpg">
+                <img src="imgs/img1.jpg" height="600">
             </a>
             <a href="javascript:">
-                <img src="imgs/img2.jpg">
+                <img src="imgs/img2.jpg" height="600">
             </a>
             <a href="javascript:">
-                <img src="imgs/img3.jpg">
+                <img src="imgs/img3.jpg" height="600">
             </a>
             <a href="javascript:">
-                <img src="imgs/img4.jpg">
+                <img src="imgs/img4.jpg" height="600">
             </a>
             <a href="javascript:">
-                <img src="imgs/img5.jpg">
+                <img src="imgs/img5.jpg" height="600">
             </a>
         </div>
         <div id="red-dot-container" class="dot-container"></div>

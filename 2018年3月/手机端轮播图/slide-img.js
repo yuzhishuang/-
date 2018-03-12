@@ -66,7 +66,7 @@ ImgFlow.prototype = {
             this.currentCount = 1;
             this.slideContainer.animate({left: "0"}, this.animateTime);
         }
-       // console.log("index:", this.currentCount - 1);
+        // console.log("index:", this.currentCount - 1);
         this.setCurrentDotLight(this.currentCount - 1);
     },
     slideAnimateRight: function () {/**
