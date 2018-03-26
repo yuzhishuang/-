@@ -61,6 +61,59 @@
 		console.log(Doctor);
 		console.log(Chinese);
 
+		Array.prototype.clone = function (array, deep) {
+			if (deep === true) {
+				if ( array.constructor === Array ) {
+					var newArray = [];
+					array.forEach(function (object) {
+						newArray.push([].clone( object, deep));
+					});
+				} else {
+					return array;
+				}
+				return newArray;
+			} else {
+				return array.slice(0);
+			}
+		};
+
+		//  另一种写法
+//		Array.clone = function ( array, deep ) {
+//			if (deep === true) {
+//				//  如果是深拷贝
+//				if (array.constructor === Array ) {
+//					var newArray = [];
+//					array.forEach(function (object) {
+//						newArray.push(Array.clone( object, deep));
+//					});
+//				} else {
+//					return array;
+//				}
+//				return newArray;
+//			} else {
+//				return array.slice(0);
+//			}
+//		};
+//		Array.prototype.clone = function (array, deep) {
+//			if (deep === true) {
+//				//  如果是深度复制的话
+//				var newArray = [];
+//				array.forEach(function (object) {
+//					newArray.push(Array.clone(object, deep));
+//				});
+//				return newArray;
+//			} else {
+//				return array.slice(0);
+//			}
+//		};
+		console.log('最新的');
+		var demo1 = [1,2,3,2,3];
+		var demo2 = [];
+		var demo3 = demo2.clone(demo1, false);
+		demo3[0][3] = 4;
+		console.log(demo3);
+		console.log(demo1);
+
 
 	})()
 </script>

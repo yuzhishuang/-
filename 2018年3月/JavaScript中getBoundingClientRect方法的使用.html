@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>getBoundingClientRect方法的使用</title>
+</head>
+<style type="text/css">
+    * {
+        margin: 0;
+    }
+</style>
+<body>
+<div id="div" style="width: 100px;height: 3000px;border: 1px solid #f00;margin: 0px;">获取距离</div>
+<script type="text/javascript">
+    (function () {
+        var div = document.querySelector('div');  //  获取元素
+        console.log(div.getBoundingClientRect().top);  //  元素上边距离页面上边的距离
+        console.log(div.getBoundingClientRect().right);  //  元素右边距离页面左边的距离
+        console.log(div.getBoundingClientRect().bottom);   //  元素底边距离页面上边的距离
+        console.log(div.getBoundingClientRect().left);  //  元素左边距离页面左边的距离
+    })()
+</script>
+</body>
+</html>
