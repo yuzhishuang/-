@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>箭头函数this指向问题</title>
+</head>
+<body>
+<script type="text/javascript">
+	s2 = 6;
+	function Timer () {
+		this.s1 = 0;
+		this.s2 = 0;
+		//  箭头函数
+		setInterval( () => this.s1++, 1000);
+		//  普通函数
+		setInterval( function () {
+			this.s2++;
+		}, 1000);
+	}
+	var timer = new Timer();
+	setTimeout(function () {
+		console.log(s2);
+	}, 2000);
+	setTimeout( () => console.log('s1:', timer.s1), 3100);
+	setTimeout(function () {
+		console.log(s2);
+	}, 4000);
+	setTimeout( () => console.log('s2:', timer.s2), 5100);
+	setTimeout(function () {
+		console.log(s2);
+	}, 6000);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+	<div id="div1">我是一个div</div>
+<script type="text/javascript">
+(function(){
+	//  在Object.prototype.toString.call([]) === '[object Array]'被发现之前，我们经常用鸭子类型的思想来判断一个对象是否是一个数组
+	var isArray = function ( obj ) {
+		return obj && typeof obj === 'object' && typeof obj.length === 'number' && typeof obj.splice === 'function'
+	};
+	var obj1 = {name: 'yzs', age: 18};
+	var arr = [1, 2, 3];
+	console.log(typeof obj1.splice);
+	console.log(typeof arr.splice);
+})();
+
+</script>
+</body>
+</html>
